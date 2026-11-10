@@ -18,4 +18,10 @@ public class UsuarioController {
         Usuario novoUsuario = usuarioService.registarUsuario(usuario);
         return ResponseEntity.ok(novoUsuario);
     }
+@GetMapping("/buscar")
+public ResponseEntity<Usuario> buscarPorEmail(@RequestParam String email) {
+    return usuarioService.buscarPorEmail(email)
+            .map(ResponseEntity::ok)
+            .orElse(ResponseEntity.notFound().build());
+}
 }

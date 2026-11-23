@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="pt-BR"> 
+    <head> 
+        <meta charset="utf-8"> 
+        <meta content="width=device-width, initial-scale=1" name="viewport"> 
+        <meta content="#102d4f" name="theme-color"> 
+        <meta content="Sistema de gestão da produção acadêmica." name="description"> 
+        <title>LattesScore</title> 
+        <link href="https://fonts.googleapis.com" rel="preconnect"> 
+        <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"> 
+        <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Manrope:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"> 
+        <link href="css/estilos.css" rel="stylesheet"> 
+    </head> 
+    <body> 
+        <div aria-live="polite" class="regiao-avisos" id="regiao-avisos"></div> 
+        <section class="estrutura-autenticacao" id="tela-autenticacao"> 
+            <div class="painel-lateral-autenticacao"> 
+                <a class="marca marca-clara" href="#"> 
+                    <span class="simbolo-marca">L</span> 
+                    <span>LattesScore</span> 
+                </a> 
+            </div> 
+            <div class="area-autenticacao"> 
+                <div class="marca-movel"> 
+                    <span class="simbolo-marca">L</span>
+                    LattesScore
+                </div> 
+                <div class="cartao-autenticacao"> 
+                    <div class="titulo-autenticacao"> 
+                        <h2 id="titulo-acesso">Entrar no LattesScore</h2> 
+                        <p id="subtitulo-acesso">Acesse sua conta ou faça seu cadastro.</p> 
+                    </div> 
+                    <div class="abas-autenticacao"> 
+                        <button class="aba-autenticacao ativo" data-aba-autenticacao="entrar">Entrar</button> 
+                        <button class="aba-autenticacao" data-aba-autenticacao="cadastro">Criar conta</button> 
+                    </div> 
+                    <form class="formulario-empilhado" id="formulario-entrar"> 
+                        <label>E-mail
+                            <input autocomplete="email" name="email" placeholder="voce@universidade.edu.br" required="" type="email"> 
+                        </label> 
+                        <label>Senha
+                            <div class="campo-senha"> 
+                                <input autocomplete="current-password" name="senha" placeholder="Sua senha" required="" type="password"> 
+                                <button aria-label="Mostrar senha" class="alternar-senha" type="button">◉</button> 
+                            </div> 
+                        </label> 
+                        <button class="botao botao-principal botao-largo" type="submit">Entrar na plataforma
+                            <span>→</span> 
+                        </button> 
+                        <p class="observacao-formulario" id="aviso-login">Login disponível no modo demonstração.</p> 
+                    </form> 
+                    <form class="formulario-empilhado oculto" id="formulario-cadastro"> 
+                        <label>E-mail
+                            <input autocomplete="email" name="email" placeholder="voce@universidade.edu.br" required="" type="email"> 
+                        </label> 
+                        <label>Senha
+                            <input autocomplete="new-password" minlength="8" name="senha" placeholder="Mínimo de 8 caracteres" required="" type="password"> 
+                        </label> 
+                        <label>Perfil
+                            <select name="perfil" required=""> 
+                                <option value="">Selecione seu perfil</option> 
+                                <option value="PESQUISADOR">Pesquisador</option> 
+                                <option value="AVALIADOR">Avaliador</option> 
+                                <option value="ADMINISTRADOR">Administrador</option> 
+                            </select> 
+                        </label> 
+                        <button class="botao botao-principal botao-largo" type="submit">Criar minha conta
+                            <span>→</span> 
+                        </button> 
+                    </form> 
+                </div> 
+                <div class="rodape-autenticacao">©
+                    <span id="ano-atual"></span>
+                    LattesScore
+                </div> 
+            </div> 
+        </section> 
+        <div class="estrutura-aplicacao oculto" id="tela-aplicacao"> 
+            <aside class="barra-lateral" id="barra-lateral"> 
+                <div class="topo-barra-lateral"> 
+                    <a class="marca" href="#inicio"> 
+                        <span class="simbolo-marca">L</span> 
+                        <span>LattesScore</span> 
+                    </a> 
+                    <button aria-label="Fechar menu" class="botao-icone apenas-movel" id="fechar-barra-lateral">×</button> 
+                </div> 
+                <nav aria-label="Navegação principal" class="lista-navegacao"> 
+                    <a class="link-navegacao ativo" data-pagina="inicio" href="#inicio"> 
+                        <span class="icone-navegacao">▦</span>
+                        Visão geral
+                    </a> 
+                    <a class="link-navegacao" data-pagina="importar" href="#importar"> 
+                        <span class="icone-navegacao">⇧</span>
+                        Importar currículo
+                    </a> 
+                    <a class="link-navegacao" data-pagina="producao" href="#producao"> 
+                        <span class="icone-navegacao">▤</span>
+                        Produção acadêmica
+                    </a> 
+                    <a class="link-navegacao" data-pagina="avaliacao" href="#avaliacao"> 
+                        <span class="icone-navegacao">◎</span>
+                        Avaliação e pontuação
+                    </a> 
+                    <a class="link-navegacao" data-pagina="perfil" href="#perfil"> 
+                        <span class="icone-navegacao">♙</span>
+                        Meu perfil
+                    </a> 
+                </nav> 
+                <div class="base-barra-lateral"> 
+                    <button class="link-navegacao link-sair" id="botao-sair" type="button"> 
+                        <span class="icone-navegacao">↪</span>
+                        Sair
+                    </button> 
+                </div> 
+            </aside> 
+            <div class="fundo-barra-lateral" id="fundo-barra-lateral"></div> 
+            <main class="area-principal"> 
+                <header class="barra-superior"> 
+                    <div class="lado-esquerdo-superior"> 
+                        <button aria-label="Abrir menu" class="botao-icone alternar-menu" id="alternar-menu">☰</button> 
+                        <div class="caminho-navegacao">Workspace
+                            <span>/</span> 
+                            <strong id="navegacao-atual">Visão geral</strong> 
+                        </div> 
+                    </div> 
+                    <div class="lado-direito-superior"> 
+                        <span class="estado-api"> 
+                            <i></i> 
+                            <span id="texto-estado-api">API não verificada</span> 
+                        </span> 
+                        <button aria-label="Abrir perfil" class="avatar-usuario" id="avatar-usuario-atual">LS</button> 
+                    </div> 
+                </header> 
+                <div class="conteudo-pagina"> 
+                    <section class="secao-pagina ativo" id="pagina-inicio"> 
+                        <div class="cabecalho-pagina"> 
+                            <div> 
+                                <span class="rotulo-superior">PAINEL DE CONTROLE</span> 
+                                <h1>Visão geral</h1> 
+                                <p>Resumo da sua atividade acadêmica.</p> 
+                            </div> 
+                            <a class="botao botao-principal" href="#importar"> 
+                                <span>＋</span>
+                                Importar currículo
+                            </a> 
+                        </div> 
+                        <div class="painel-boas-vindas"> 
+                            <div> 
+                                <h2>Bem-vindo ao LattesScore</h2> 
+                                <p>Gerencie seu currículo e acompanhe sua produção acadêmica.</p> 
+                            </div> 
+                            <div class="ilustracao-painel"> 
+                                <div class="orbita orbita-um"></div> 
+                                <div class="orbita orbita-dois"></div> 
+                                <div class="centro-ilustracao">L
+                                    <span>+</span> 
+                                </div> 
+                                <div class="ponto-ilustracao ponto-um">✦</div> 
+                                <div class="ponto-ilustracao ponto-dois">✧</div> 
+                            </div> 
+                        </div> 
+                        <div class="linha-titulo-secao"> 
+                            <div> 
+                                <h3>Resumo</h3> 
+                                <p>Indicadores da conta</p> 
+                            </div> 
+                            <span class="etiqueta-dados">DADOS DA CONTA</span> 
+                        </div> 
+                        <div class="grade-indicadores"> 
+                            <article class="cartao-indicador"> 
+                                <div class="topo-indicador"> 
+                                    <span>Currículo importado</span> 
+                                    <span class="icone-indicador azul">⇧</span> 
+                                </div> 
+                                <strong id="indicador-curriculo">Pendente</strong> 
+                                <small id="observacao-curriculo">Aguardando primeiro envio</small> 
+                            </article> 
+                            <article class="cartao-indicador"> 
+                                <div class="topo-indicador"> 
+                                    <span>Produções registradas</span> 
+                                    <span class="icone-indicador violeta">▤</span> 
+                                </div> 
+                                <strong id="indicador-producoes">—</strong> 
+                                <small>Consulta disponível após integração</small> 
+                            </article> 
+                            <article class="cartao-indicador"> 
+                                <div class="topo-indicador"> 
+                                    <span>Pontuação total</span> 
+                                    <span class="icone-indicador verde">◎</span> 
+                                </div> 
+                                <strong id="indicador-pontuacao">—</strong> 
+                                <small>Sem avaliação calculada</small> 
+                            </article> 
+                            <article class="cartao-indicador"> 
+                                <div class="topo-indicador"> 
+                                    <span>Última atualização</span> 
+                                    <span class="icone-indicador ambar">◷</span> 
+                                </div> 
+                                <strong id="indicador-atualizacao">—</strong> 
+                                <small>Histórico não disponível na API</small> 
+                            </article> 
+                        </div> 
+                        <div class="grade-painel"> 
+                            <article class="painel"> 
+                                <div class="cabecalho-painel"> 
+                                    <div> 
+                                        <h3>Comece por aqui</h3> 
+                                        <p>Etapas iniciais</p> 
+                                    </div> 
+                                    <span class="numero-painel">01 — 03</span> 
+                                </div> 
+                                <div class="lista-etapas"> 
+                                    <a class="item-etapa" href="#perfil"> 
+                                        <span class="indice-etapa">01</span> 
+                                        <span class="texto-etapa"> 
+                                            <strong>Complete seu perfil</strong> 
+                                            <small>Adicione seus dados de pesquisador.</small> 
+                                        </span> 
+                                        <span class="seta-etapa">→</span> 
+                                    </a> 
+                                    <a class="item-etapa" href="#importar"> 
+                                        <span class="indice-etapa">02</span> 
+                                        <span class="texto-etapa"> 
+                                            <strong>Importe o Currículo Lattes</strong> 
+                                            <small>Envie o arquivo XML exportado da Plataforma Lattes.</small> 
+                                        </span> 
+                                        <span class="seta-etapa">→</span> 
+                                    </a> 
+                                    <a class="item-etapa" href="#avaliacao"> 
+                                        <span class="indice-etapa">03</span> 
+                                        <span class="texto-etapa"> 
+                                            <strong>Acompanhe sua avaliação</strong> 
+                                            <small>Consulte pontuações quando o módulo estiver disponível.</small> 
+                                        </span> 
+                                        <span class="seta-etapa">→</span> 
+                                    </a> 
+                                </div> 
+                            </article> 
+                            <article class="painel painel-lateral"> 
+                                <div class="cabecalho-painel"> 
+                                    <div> 
+                                        <h3>Status da integração</h3> 
+                                        <p>Conexão com a API</p> 
+                                    </div> 
+                                    <span class="selo-estado neutro" id="selo-conexao">Pendente</span> 
+                                </div> 
+                                <div class="item-integracao"> 
+                                    <span class="icone-integracao">⌘</span> 
+                                    <div> 
+                                        <strong>API LattesScore</strong> 
+                                        <small id="endereco-api">http://localhost:8080</small> 
+                                    </div> 
+                                    <span class="estado-resumido" id="ponto-api"></span> 
+                                </div> 
+                                <div class="item-integracao"> 
+                                    <span class="icone-integracao">⇧</span> 
+                                    <div> 
+                                        <strong>Importação XML</strong> 
+                                        <small>POST /api/lattes/importar</small> 
+                                    </div> 
+                                    <span class="estado-resumido pronto"></span> 
+                                </div> 
+                                <div class="nota-integracao">A importação está implementada no back-end. Autenticação e consulta de resultados ainda precisam de endpoints próprios.</div> 
+                                <button class="botao botao-secundario botao-largo" id="verificar-api">Verificar conexão</button> 
+                            </article> 
+                        </div> 
+                    </section> 
+                    <section class="secao-pagina" id="pagina-importacao"> 
+                        <div class="cabecalho-pagina"> 
+                            <div> 
+                                <span class="rotulo-superior">DADOS ACADÊMICOS</span> 
+                                <h1>Importar currículo</h1> 
+                                <p>Envie o arquivo XML do Currículo Lattes.</p> 
+                            </div> 
+                        </div> 
+                        <div class="layout-importacao"> 
+                            <article class="painel painel-importacao"> 
+                                <div class="cabecalho-painel"> 
+                                    <div> 
+                                        <h3>Enviar arquivo XML</h3> 
+                                        <p>Informe o ID Lattes e selecione o XML.</p> 
+                                    </div> 
+                                    <span class="etiqueta-obrigatorio">CAMPOS OBRIGATÓRIOS</span> 
+                                </div> 
+                                <form class="formulario-empilhado" id="formulario-importacao"> 
+                                    <label>Identificador Lattes
+                                        <span class="dica-rotulo">ID do currículo na Plataforma Lattes</span> 
+                                        <input maxlength="32" name="idLattes" placeholder="Ex.: 1234567890123456" required="" type="text"> 
+                                    </label> 
+                                    <div class="rotulo-arquivo">Arquivo do currículo
+                                        <span class="dica-rotulo">Formato XML · Até 20 MB recomendado</span> 
+                                    </div> 
+                                    <label class="area-envio-arquivo" id="area-envio-arquivo"> 
+                                        <input accept=".xml,text/xml,application/xml" oculto="" id="arquivo-xml" name="file" type="file"> 
+                                        <span class="icone-envio">⇧</span> 
+                                        <strong>Arraste seu arquivo XML até aqui</strong> 
+                                        <span>ou
+                                            <u>selecione no computador</u> 
+                                        </span> 
+                                        <small>Somente arquivos .xml</small> 
+                                    </label> 
+                                    <div class="arquivo-selecionado oculto" id="arquivo-selecionado"></div> 
+                                    <div class="nota-privacidade"> 
+                                        <span>ⓘ</span> 
+                                        <p>O arquivo será enviado à API para armazenamento e processamento. Não envie documentos de terceiros sem autorização.</p> 
+                                    </div> 
+                                    <button class="botao botao-principal" id="botao-enviar-importacao" type="submit">Enviar currículo
+                                        <span>→</span> 
+                                    </button> 
+                                    <div class="retorno oculto" id="retorno-importacao" role="status"></div> 
+                                </form> 
+                            </article> 
+                            <aside class="painel painel-orientacao"> 
+                                <div class="icone-orientacao">✧</div> 
+                                <h3>Como exportar seu currículo?</h3> 
+                                <p>Exporte seu currículo em formato XML pela Plataforma Lattes.</p> 
+                                <ol class="etapas-orientacao"> 
+                                    <li> 
+                                        <span>1</span> 
+                                        <div> 
+                                            <strong>Acesse a Plataforma Lattes</strong> 
+                                            <small>Entre no seu currículo com suas credenciais.</small> 
+                                        </div> 
+                                    </li> 
+                                    <li> 
+                                        <span>2</span> 
+                                        <div> 
+                                            <strong>Abra a opção de exportação</strong> 
+                                            <small>Escolha a exportação do currículo no formato XML.</small> 
+                                        </div> 
+                                    </li> 
+                                    <li> 
+                                        <span>3</span> 
+                                        <div> 
+                                            <strong>Salve o arquivo</strong> 
+                                            <small>Localize o XML no seu computador e envie aqui.</small> 
+                                        </div> 
+                                    </li> 
+                                </ol> 
+                                <a class="link-texto" href="https://www.gov.br/cnpq/pt-br" rel="noopener" target="_blank">Acessar portal do CNPq ↗</a> 
+                            </aside> 
+                        </div> 
+                    </section> 
+                    <section class="secao-pagina" id="pagina-producao"> 
+                        <div class="cabecalho-pagina"> 
+                            <div> 
+                                <span class="rotulo-superior">PORTFÓLIO CIENTÍFICO</span> 
+                                <h1>Produção acadêmica</h1> 
+                                <p>Registros importados do currículo.</p> 
+                            </div> 
+                        </div> 
+                        <div class="estado-vazio painel"> 
+                            <div class="ilustracao-vazia">▤</div> 
+                            <h3>Suas produções aparecerão aqui</h3> 
+                            <p>A listagem estará disponível quando a API oferecer consulta das produções.</p> 
+                            <a class="botao botao-principal" href="#importar">Importar currículo
+                                <span>→</span> 
+                            </a> 
+                            <span class="etiqueta-dados">AGUARDANDO ENDPOINT DE CONSULTA</span> 
+                        </div> 
+                    </section> 
+                    <section class="secao-pagina" id="pagina-avaliacao"> 
+                        <div class="cabecalho-pagina"> 
+                            <div> 
+                                <span class="rotulo-superior">DESEMPENHO ACADÊMICO</span> 
+                                <h1>Avaliação e pontuação</h1> 
+                                <p>Resultado dos critérios de avaliação.</p> 
+                            </div> 
+                        </div> 
+                        <div class="grade-avaliacao"> 
+                            <article class="painel cartao-pontuacao"> 
+                                <span class="rotulo-superior">PONTUAÇÃO GERAL</span> 
+                                <div class="valor-pontuacao">—
+                                    <small>pontos</small> 
+                                </div> 
+                                <p>Nenhum cálculo disponível</p> 
+                                <div class="linha-pontuacao"> 
+                                    <span></span> 
+                                </div> 
+                                <span class="etiqueta-dados">AGUARDANDO SERVIÇO DE AVALIAÇÃO</span> 
+                            </article> 
+                            <article class="painel"> 
+                                <div class="cabecalho-painel"> 
+                                    <div> 
+                                        <h3>Critérios de avaliação</h3> 
+                                        <p>Critérios cadastrados no sistema</p> 
+                                    </div> 
+                                </div> 
+                                <div class="lista-criterios"> 
+                                    <div> 
+                                        <span class="marcador-criterio"></span> 
+                                        <div> 
+                                            <strong>Barema</strong> 
+                                            <small>Nome, área, versão e período de validade</small> 
+                                        </div> 
+                                    </div> 
+                                    <div> 
+                                        <span class="marcador-criterio"></span> 
+                                        <div> 
+                                            <strong>Regras de pontuação</strong> 
+                                            <small>Tipo de produção, estrato Qualis e pontos</small> 
+                                        </div> 
+                                    </div> 
+                                    <div> 
+                                        <span class="marcador-criterio"></span> 
+                                        <div> 
+                                            <strong>Itens pontuados</strong> 
+                                            <small>Produção, critério aplicado e pontos obtidos</small> 
+                                        </div> 
+                                    </div> 
+                                </div> 
+                            </article> 
+                        </div> 
+                        <div class="caixa-aviso"> 
+                            <span>ⓘ</span> 
+                            <p> 
+                                <strong>Transparência dos dados:</strong>
+                                o projeto contém entidades para barema, regras, produções e pontuações, mas não há endpoints REST para executar ou consultar avaliações. Esta tela está preparada para receber esses dados quando a API for ampliada.
+                            </p> 
+                        </div> 
+                    </section> 
+                    <section class="secao-pagina" id="pagina-perfil"> 
+                        <div class="cabecalho-pagina"> 
+                            <div> 
+                                <span class="rotulo-superior">CONFIGURAÇÕES PESSOAIS</span> 
+                                <h1>Meu perfil</h1> 
+                                <p>Dados da conta.</p> 
+                            </div> 
+                        </div> 
+                        <div class="layout-perfil"> 
+                            <article class="painel cartao-perfil"> 
+                                <div class="capa-perfil"></div> 
+                                <div class="dados-perfil"> 
+                                    <div class="avatar-perfil" id="avatar-perfil">LS</div> 
+                                    <h2 id="email-perfil">Usuário</h2> 
+                                    <span class="selo-estado neutro" id="tipo-usuario-perfil">Perfil não informado</span> 
+                                    <div class="divisor-perfil"></div> 
+                                    <div class="detalhe-perfil"> 
+                                        <span>E-mail cadastrado</span> 
+                                        <strong id="email-perfil-detalhe">—</strong> 
+                                    </div> 
+                                    <div class="detalhe-perfil"> 
+                                        <span>Tipo de perfil</span> 
+                                        <strong id="tipo-usuario-perfil-detalhe">—</strong> 
+                                    </div> 
+                                    <div class="detalhe-perfil"> 
+                                        <span>Sessão</span> 
+                                        <strong id="estado-sessao-perfil">Não autenticada</strong> 
+                                    </div> 
+                                </div> 
+                            </article> 
+                            <article class="painel"> 
+                                <div class="cabecalho-painel"> 
+                                    <div> 
+                                        <h3>Dados do pesquisador</h3> 
+                                        <p>Dados do Currículo Lattes</p> 
+                                    </div> 
+                                </div> 
+                                <div class="perfil-vazio"> 
+                                    <span>♙</span> 
+                                    <strong>Dados ainda não vinculados</strong> 
+                                    <p>A edição desses dados estará disponível após a criação do endpoint correspondente.</p> 
+                                    <a class="link-texto" href="#importar">Importar currículo →</a> 
+                                </div> 
+                            </article> 
+                        </div> 
+                    </section> 
+                </div> 
+                <footer class="rodape-aplicacao"> 
+                    <span>©
+                        <span id="ano-rodape"></span>
+                        LattesScore
+                    </span> 
+                </footer> 
+            </main> 
+        </div> 
+        <script src="js/configuracao.js"></script> 
+        <script src="js/api.js"></script> 
+        <script src="js/aplicacao.js"></script> 
+    </body> 
+</html>
